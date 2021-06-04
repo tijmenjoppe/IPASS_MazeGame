@@ -13,7 +13,8 @@ class Maze:
         :param y: number of nodes on y axis
         :param x: number of nodes on x axis
         """
-        gen_funcs = {'DFS': maze_generators.depth_first_search, 'AB': maze_generators.aldous_broder}
+        gen_funcs = {'DFS': maze_generators.depth_first_search, 'AB': maze_generators.aldous_broder,
+                     'PRIM': maze_generators.prim}
         # len nodes x and y axis
         self.x = x
         self.y = y
