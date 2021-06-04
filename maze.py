@@ -28,11 +28,13 @@ class Maze:
         if gen_func:
             gen_funcs[gen_func](self)
 
-    def neighbors(self, xpos, ypos, shuffle=True):
+    def neighbors(self, xpos, ypos, shuffle=True, radius=2):
         # list comprehension to return neighbors. Only returns neighbors existent in the graph.
         # ex: cell 1, 1 only has 2 neighbors
-        n = [*[(xpos + i, ypos) for i in range(-2, 3, 4) if 0 < xpos + i < self.rows - 1],  # and 0 < ypos <= self.cols
-             *[(xpos, ypos + i) for i in range(-2, 3, 4) if 0 < ypos + i < self.cols - 1]]  # and 0 < xpos <= self.rows
+        # radius 2 to get neighbors from cell to cell (cells only on uneven cells)
+        # radius 1 to get all neighbors (used to get graph of whole maze)
+        n = [*[(xpos + i, ypos) for i in range(-radius, radius+1, radius*2) if 0 < xpos + i < self.rows - 1],  # and 0 < ypos <= self.cols
+             *[(xpos, ypos + i) for i in range(-radius, radius+1, radius*2) if 0 < ypos + i < self.cols - 1]]  # and 0 < xpos <= self.rows
         if shuffle:
             random.shuffle(n)
         return n
