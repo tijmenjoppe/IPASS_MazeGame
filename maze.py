@@ -27,8 +27,11 @@ class Maze:
         self.end = (self.rows - 2, self.cols - 2)
         if gen_func:
             gen_funcs[gen_func](self)
-        # maze represented as adj matrix
-        self.adj_matrix = {(i, j): [n for n in self.neighbors(i, j, radius=1) if self.grid[n] == 0] for i in range(self.rows) for j in range(self.cols) if self.grid[i, j] == 0}
+        # maze represented as adj list
+        self.adj_lst = {
+            (i, j):
+                [n for n in self.neighbors(i, j, radius=1)
+                 if self.grid[n] == 0] for i in range(self.rows) for j in range(self.cols) if self.grid[i, j] == 0}
 
     def neighbors(self, xpos, ypos, shuffle=True, radius=2):
         # list comprehension to return neighbors. Only returns neighbors existent in the graph.
