@@ -20,7 +20,7 @@ class Maze:
         # len of whole graph including the nodes and their edges
         self.rows = 2 * y + 1
         self.cols = 2 * x + 1
-        self.graph = np.ones((self.rows, self.cols)).astype(int)
+        self.grid = np.ones((self.rows, self.cols)).astype(int)
         # start is at left up corner finish at right down
         self.start = (1, 1)
         self.end = (self.rows - 2, self.cols - 2)
@@ -38,8 +38,4 @@ class Maze:
 
     def destroy_wall(self, current_cell, neighbor_cell):
         """destroys a wall cell between 2 given cells"""
-        self.graph[(current_cell[0] + neighbor_cell[0]) // 2][(current_cell[1] + neighbor_cell[1]) // 2] = 0
-
-
-m = Maze(3, 3, 'AB')
-print(m.graph)
+        self.grid[(current_cell[0] + neighbor_cell[0]) // 2][(current_cell[1] + neighbor_cell[1]) // 2] = 0
