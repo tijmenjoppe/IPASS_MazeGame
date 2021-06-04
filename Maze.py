@@ -29,6 +29,7 @@ class Maze:
         # ex: cell 1, 1 only has 2 neighbors
         neighbor_lst = [(xpos + i, ypos) for i in range(-2, 3, 4) if 0 <= xpos + i <= self.rows - 1 and self.graph[xpos+i][ypos]] + \
                [(xpos, ypos + i) for i in range(-2, 3, 4) if 0 <= ypos + i <= self.cols - 1 and self.graph[xpos][ypos+i]]
-        random.shuffle(neighbor_lst)
+        if shuffle:
+            random.shuffle(neighbor_lst)
         return neighbor_lst
 
