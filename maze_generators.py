@@ -27,17 +27,15 @@ def depth_first_search(maze, start=(1, 1)):
 def aldous_broder(maze, start=(1, 1)):
     visited_cells = [start]
     current_cell = start
+    maze.grid[current_cell] = 0
     while len(visited_cells) < (maze.x * maze.y):
-        maze.grid[current_cell] = 0
         neighbors = maze.neighbors(current_cell[0], current_cell[1], True)
-        print(neighbors)
         next_cell = neighbors[0]
         if maze.grid[next_cell]:
             visited_cells.append(next_cell)
             maze.destroy_wall(current_cell, next_cell)
             maze.grid[next_cell] = 0
         current_cell = next_cell
-
 
 def prim(maze, start=(1, 1)):
     frontier = set()
@@ -59,5 +57,9 @@ def prim(maze, start=(1, 1)):
 if __name__ == '__main__':
     from maze import Maze
 
-    m = Maze(3, 3)
-    prim(m)
+    m = Maze(3, 3, 'AB')
+    print(m.solution)
+    print(m.grid)
+    for pos in m.solution:
+        m.grid[pos] = 3
+    print(m.grid)
