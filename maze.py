@@ -1,6 +1,7 @@
 import numpy as np
 import random
 import maze_generators
+import maze_solver
 
 
 class Maze:
@@ -32,6 +33,7 @@ class Maze:
             (i, j):
                 [n for n in self.neighbors(i, j, radius=1)
                  if self.grid[n] == 0] for i in range(self.rows) for j in range(self.cols) if self.grid[i, j] == 0}
+        self.solution = maze_solver.breadth_first_search(self)
 
     def neighbors(self, xpos, ypos, shuffle=True, radius=2):
         # list comprehension to return neighbors. Only returns neighbors existent in the graph.
