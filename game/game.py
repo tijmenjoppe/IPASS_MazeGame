@@ -1,5 +1,5 @@
 from maze.maze import Maze
-from maze.maze_solver import breadth_first_search, depth_first_search
+from maze.maze_solvers import breadth_first_search, depth_first_search
 from menu import Menu
 from pygame.locals import *
 import time
