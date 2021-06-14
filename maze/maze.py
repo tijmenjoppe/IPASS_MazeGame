@@ -1,11 +1,12 @@
 import numpy as np
 import random
-import maze_generators
-import maze_solver
+from maze.maze_generators import *
+from maze import maze_solvers
+from functools import partial
 
 
 class Maze:
-    def __init__(self, x, y, gen_func=None):
+    def __init__(self, x, y, gen_func=None, animate=False):
         """
         creates empty maze of size (y*2 + 1) * (x*2 +1)
         y, x representing the number of nodes that will be placed on uneven rows/cols (0-visited 1-not-visited).
@@ -14,8 +15,8 @@ class Maze:
         :param y: number of nodes on y axis
         :param x: number of nodes on x axis
         """
-        gen_funcs = {'DFS': maze_generators.depth_first_search, 'AB': maze_generators.aldous_broder,
-                     'PRIM': maze_generators.prim}
+        gen_funcs = {1: depth_first_search,
+                     2: prim, 4: wilson, 5: aldous_broder, 3: partial(wilson, extra_walker=True)}
         # len nodes x and y axis
         self.x = x
         self.y = y
@@ -26,14 +27,25 @@ class Maze:
         # start is at left up corner finish at right down
         self.start = (1, 1)
         self.end = (self.rows - 2, self.cols - 2)
+        self.not_visited_cells = [(i, j) for i in range(1, self.rows - 1, 2) for j in range(1, self.cols - 1, 2)]
+
         if gen_func:
-            gen_funcs[gen_func](self)
+            gen_funcs[gen_func](self, animate=animate)
         # maze represented as adj list
-        self.adj_lst = {
+
+
+        #self.solution = maze_solver.breadth_first_search(self.adj_lst, self.start, self.end)
+
+        # make finish another int (3)
+        #self.grid[self.end] = 3
+
+    @property
+    def adj_lst(self):
+        """returns the maze represented as adjacent list"""
+        return {
             (i, j):
                 [n for n in self.neighbors(i, j, radius=1)
                  if self.grid[n] == 0] for i in range(self.rows) for j in range(self.cols) if self.grid[i, j] == 0}
-        self.solution = maze_solver.breadth_first_search(self.adj_lst, self.start, self.end)
 
     def neighbors(self, xpos, ypos, shuffle=True, radius=2):
         # list comprehension to return neighbors. Only returns neighbors existent in the graph.
@@ -49,3 +61,6 @@ class Maze:
     def destroy_wall(self, current_cell, neighbor_cell):
         """destroys a wall cell between 2 given cells"""
         self.grid[(current_cell[0] + neighbor_cell[0]) // 2][(current_cell[1] + neighbor_cell[1]) // 2] = 0
+
+# just for testing purposes
+

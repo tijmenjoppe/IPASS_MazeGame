@@ -2,9 +2,7 @@ import random
 import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
-from maze.animate_helpers import draw_grid, animation_setup_grid
-from rgb_colors import *
-
+from maze.animate_helpers import *
 
 def random_walker(maze, current_cell, path=[]):
     """random walker used in Aldolous Broder and Wilson's algorithm if chosen to use a extra walker.
