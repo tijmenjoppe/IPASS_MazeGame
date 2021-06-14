@@ -1,4 +1,6 @@
 """contains functions used by both solvers and generators to animate the solving/generator algorithm"""
+import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 from rgb_colors import *
 

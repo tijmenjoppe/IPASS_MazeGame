@@ -1,4 +1,6 @@
 import random
+import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 from maze.animate_helpers import draw_grid, animation_setup_grid
 from rgb_colors import *
