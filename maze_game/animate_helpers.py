@@ -16,7 +16,7 @@ INDIGO = (75, 0, 130)
 def animation_setup_grid(grid, tile_size=15):
     """Function to setup a pygame screen for animating solver/generator algorithms
     args:
-        grid (2d nparray): maze as grid used to set display dimensions according to it's size
+        grid (2d array): maze as grid used to set display dimensions according to it's size
         tile_size (int): size of tiles in animation
     returns:
        clock(to manage fps) tile_size(to draw cells the appropriate size) win (pygame window) """
@@ -32,8 +32,8 @@ def animation_setup_grid(grid, tile_size=15):
 def draw_grid(win, grid, tile_size, wall_color=BLACK, path_color=WHITE):
     """Function to draw a grid containing 1's and 0's on a given pygame display
     args:
-        win (pygame surface)
-        grid (2d nparray): maze as grid containing 1's for walls/no edge and 0's for open cells
+        win (pygame surface): pygame display
+        grid (2d array): maze as grid containing 1's for walls/no edge and 0's for open cells
         tile_size (int): size of tiles in animation
         wall_color (tuple): rgb color to display walls
         path_color: rgb color to display open cells"""
@@ -54,5 +54,11 @@ def draw_grid(win, grid, tile_size, wall_color=BLACK, path_color=WHITE):
 
 
 def draw_start_finish(win, tile_size, start, end):
+    """function to draw the start and end position a maze (used for visualizing solvers)
+    args:
+        win(pygame surface): pygame display
+        tile_size(int): size of tiles in animation
+        start(tuple): start position of the maze as (row, col)
+        end(tuple): end/finish position of the maze as (row, col)"""
     pygame.draw.rect(win, RED, (start[1] * tile_size, start[0] * tile_size, tile_size, tile_size))
     pygame.draw.rect(win, YELLOW, (end[1] * tile_size, end[0] * tile_size, tile_size, tile_size))
