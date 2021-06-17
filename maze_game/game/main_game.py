@@ -1,4 +1,4 @@
-from game import Game
+from maze_game.game.game import Game
 
 g = Game()
 

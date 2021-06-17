@@ -1,6 +1,6 @@
 import unittest
-from maze.maze import Maze
-from maze.maze_solvers import *
+from maze_game.maze import Maze
+from maze_game.maze.maze_solvers import *
 import numpy as np
 
 
@@ -41,6 +41,7 @@ class TestMazeSolvers(unittest.TestCase):
         path = breadth_first_search(maze, (1, 1))
         # shortest path will always be:
         self.assertEqual(path, [(1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (5, 2), (5, 3), (5, 4), (5, 5)])
+
 
 
 if __name__ == '__main__':
