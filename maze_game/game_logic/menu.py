@@ -31,7 +31,7 @@ class Menu():
         self.selection_pointer = pygame.Rect(self.start_x, self.start_y, 20, 20)
 
     def draw_pointer(self):
-        """function to draw_pointer on the screen"""
+        """Function to draw_pointer on the screen"""
         # pointer has offset of -180 on x axis
         self.game.draw_text('->', 20, self.selection_pointer.x + -180, self.selection_pointer.y, RED)
 

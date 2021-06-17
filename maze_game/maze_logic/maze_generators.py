@@ -6,11 +6,13 @@ from maze_game.animate_helpers import *
 def random_walker(maze, current_cell, path=[]):
     """random walker used in Aldolous Broder and Wilson's algorithm if chosen to use a extra walker.
     randomly walks (once per function calL) along any cells of the maze. If the cell hasn't been visited yet the passages gets carved out.
-    An optional param path can be given which are positions in the maze that the random_walker can't walk on (Path from wilson's)
+    An optional param path can be given which are positions in the maze that the random_walker can't walk on (Path from Wilson's)
+
     Args:
         maze:   maze object which will be used to store the generated maze.
         current_cell: position in the maze where to start our random walk from
         path: path to avoid in the random walk
+
     Returns:
         current_cell: if the next cell is in the path the current cell gets returned as next cell
         next_cell: the next cell to take a rand
@@ -28,11 +30,18 @@ def random_walker(maze, current_cell, path=[]):
 
 
 def depth_first_search(maze, animate=False):
-    """ Author: Charles Pierre Trémaux (1876)
-        Time Complexity O(N) Vertices + Vertices
-        Space Complexity O(N) Vertices
+    """
+    Author:
+        Charles Pierre Trémaux (1876)
 
-    Maze generation algorithm (1, Difficulty: easy)
+    Time Complexity:
+        O(N) Vertices + Vertices,
+
+    Space Complexity:
+        O(N) Vertices
+
+    Maze generation algorithm:
+        (1, Difficulty: easy)
 
     The algorithm:
         Picks a random starting cell and carves out a passage to a random not visited neighbor cell, repeat this process from the neighbors perspective
@@ -84,11 +93,17 @@ def depth_first_search(maze, animate=False):
 
 def aldous_broder(maze, animate=False):
     """
-    Authors: David Aldous, Andrei Broder
-    Time Complexity O(?): uses a random walker making the worst case infinite
-    Space Complexity O(N) Vertices.
+    Authors:
+        David Aldous, Andrei Broder
 
-    Maze generation algorithm (5, Difficulty: hard (alternative))
+    Time Complexity:
+        O(?) uses a random walker making the worst case infinite
+
+    Space Complexity:
+        O(N) Vertices.
+
+    Maze generation algorithm:
+        (5, Difficulty: hard (alternative))
 
     The algorithm:
         Picks a random starting cell mark it at visited and carve out a passage to a random neighbor cell, repeat this process from the neighbors perspective
@@ -96,7 +111,8 @@ def aldous_broder(maze, animate=False):
 
     Args:
         maze: maze object which will be used to store the generated maze.
-        animate: animate the generating process, 0 (=False) or FPS as integer value."""
+        animate: animate the generating process, 0 (=False) or FPS as integer value.
+    """
 
     def draw():
         """Custom draw function"""
@@ -126,12 +142,17 @@ def aldous_broder(maze, animate=False):
 
 def prim(maze, animate=False):
     """
-    Authors: Algorithm discovered by Vojtěch Jarník (1930) independently rediscovered by Robert Prim (1957), Edsger Dijkstra (1959)
-    Time Complexity: O(N) Vertices.
-    Space Complexity O(N) Vertices/2 + 1
+    Authors:
+        Vojtěch Jarník (1930) independently rediscovered by Robert Prim (1957), Edsger Dijkstra (1959)
 
-    Maze generation algorithm (2, Difficulty: Medium)
+    Time Complexity:
+        O(N) Vertices.
 
+    Space Complexity:
+        O(N) Vertices/2 + 1
+
+    Maze generation algorithm:
+        (2, Difficulty: Medium)
 
     The algorithm:
         Picks a random starting cell mark it at part of the maze and add all not visited neighbors to a frontier set.
@@ -184,11 +205,16 @@ def prim(maze, animate=False):
 
 def wilson(maze, extra_walker=False, animate=False):
     """
-    Maze generation algorithm (4, Difficulty: Hard(alternative))
+    Author:
+        David Bruce Wilson (1996)
 
-    Author: David Bruce Wilson (1996)
-    Time Complexity O(?): uses a random walker making the worst case infinite\
-    Space Complexity O(N) Vertices.
+    Time Complexity O(?):
+        uses a random walker making the worst case infinite\
+    Space Complexity O(N):
+        Vertices.
+
+    Maze generation algorithm:
+        (4, Difficulty: Hard(alternative))
 
     The algorithm:
         Pick a random cell and marks it as part of the maze.
@@ -200,16 +226,19 @@ def wilson(maze, extra_walker=False, animate=False):
 
 
     Wilson's Algorithm & Aldolous Broder hybrid
-    Maze generation algorithm (3, Difficulty: Hard)
+    Maze generation algorithm:
+        (3, Difficulty: Hard)
 
     The algorithm:
         extended on Wilson. Instead of only picking a random cell and marking it as part of the maze:
         start a Random Walk from there that does destroy walls on its path (Aldolous Broder)
         this random walker avoids colliding into Wilson's path
+        has a same time and space complexity as Wilson/Aldolous Broder. Though almost always faster then those by themself
 
-    Author: unknown/Sjoerd Beetsma
-    Time Complexity O(?): uses a random walker making the worst case infinite. Though almost always faster then Wilson / Aldolous Broder by themself
-    Space Complexity O(V) V = Vertices|Nodes.
+    Author:
+        unknown/Sjoerd Beetsma
+
+
 
     Args:
         maze: maze object which will be used to store the generated maze.

@@ -76,6 +76,9 @@ class Game:
                     self.K_ESC = False
 
     def game_loop(self):
+        """Game loop of the maze game.
+        Initializes a new objects at the start of the function and enters the game_loop
+         checking for Collisions between the finish and player, key(events) and redrawing the whole scene each frame"""
         # new maze, player, finish, wall objects in game loop to create a new instance every game
         maze = Maze(x=self.maze_w, y=self.maze_h, gen_func=self.maze_difficulty, animate=self.animate_fps)
         self.player = Player(maze.start[1] * self.tile_size, maze.start[0] * self.tile_size, self.tile_size,
@@ -120,10 +123,10 @@ class Game:
     def solve(self, maze, player, solver):
         """function to show the solution and also solve
             the function will run a pathfinding algorithm and take over the player's controls to finish the game
-            args:
-                maze: Maze object containing a perfect maze
-                player: player object
-                solver: solver function"""
+            Args:
+                maze (Maze): Maze object containing a perfect maze
+                player (Player): player object
+                solver (Callable): solver function"""
         # get path from current position to finish from a solver function
         path_to_finish = solver(maze,
                                 start_pos=(int(player.y / self.tile_size), int(player.x / self.tile_size)),
@@ -167,8 +170,8 @@ class Game:
 
 
     def draw_text(self, text, size, x, y, color=WHITE):
-        """method to draw text over the screen
-            args:
+        """Method to draw text over the screen
+            Args:
                 text: string of which text to display
                 size: font size (int)
                 x: x position on pygame display
@@ -183,8 +186,8 @@ class Game:
         self.display.blit(text_surface, text_rect)
 
     def add_walls(self, maze):
-        """function to add walls from a maze object to the game as a Rectangle object (to handle collisions easily)
-        args:
+        """Function to add walls from a maze object to the game as a Rectangle object (to handle collisions easily)
+        Args:
             maze: Maze object containing a perfect maze"""
         for i in range(maze.rows):
             for j in range(maze.cols):
@@ -194,15 +197,15 @@ class Game:
                     self.walls.append(pygame.Rect(x, y, self.tile_size, self.tile_size))
 
     def draw_walls(self):
-        """function to draw walls on the screen"""
+        """Function to draw walls on the screen"""
         for wall in self.walls:
             pygame.draw.rect(self.display, BLACK, wall)
 
     def check_collision(self, player):
-        """function to check for collisions between a given player and all the walls in the game
-        args:
+        """Function to check for collisions between a given player and all the walls in the game
+        Args:
             player: player object to check for collisions
-        returns:
+        Returns:
             list with all walls that are in collision with player
         """
         collisions = []
@@ -212,11 +215,11 @@ class Game:
         return collisions
 
     def reset_keys(self):
-        """function to reset all key presses each frame"""
+        """Function to reset all key presses each frame"""
         self.K_LEFT, self.K_RIGHT, self.K_UP, self.K_DOWN, self.K_ENTER, self.K_ESC = False, False, False, False, False, False
 
     def draw_all(self):
-        """function that calls all drawing functions to re-draw the entire scene with 1 function call"""
+        """Function that calls all drawing functions to re-draw the entire scene with 1 function call"""
         self.draw_walls()
         self.player.draw(self.display)
         self.finish.draw(self.display)

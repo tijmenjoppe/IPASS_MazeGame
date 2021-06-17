@@ -5,17 +5,21 @@ from maze_game.animate_helpers import *
 def breadth_first_search(maze, start_pos, animate=False):
     """
     Authors: Konrad Zuse (1945), Edward F. Moore (1959)
+
     Time Complexity O(N): Vertices + Edges
+
     Space Complexity O(N): Vertices + Edges
 
     The Algorithm:
         starts at a given start cell and spreads out to not visited neighboring cells marking their distance from the start cell
         these neighbor cells repeat the process until the end of the maze is found then the algorithm
         travels back the shortest path to the start end stores it's path
+
     Args:
         maze:   maze object which will be used to store the generated maze.
         start_pos: position in the maze where to start the pathfinding from
         animate: animate the generating process, False or FPS as integer value.
+
     Returns:
         the shortest path from start_position the the maze end in the form of a list with grid positions
         example: [(1,1),(2,1),...(5,5)]
@@ -90,8 +94,11 @@ def breadth_first_search(maze, start_pos, animate=False):
 def depth_first_search(maze, start_pos, animate=False):
     """
     Author: Charles Pierre Trémaux (1876)
+
     Time Complexity O(N): Vertices + Edges
+
     Space Complexity O(N): Vertices + Edges
+
     The algorithm:
         starts at a given start cell spreading out to a random not visited neighboring cell and storing it's path
         these neighbor cells repeat the process until the end of the maze is found.
@@ -101,6 +108,7 @@ def depth_first_search(maze, start_pos, animate=False):
         maze:   maze object which will be used to store the generated maze.
         start_pos: position in the maze where to start the pathfinding from
         animate: animate the generating process, False or FPS as integer value.
+
     Returns:
         path from start_position the the maze end in the form of a list with grid positions
         example: [(1,1),(2,1),...(5,5)]

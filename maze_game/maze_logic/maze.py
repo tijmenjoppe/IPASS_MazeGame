@@ -2,7 +2,6 @@
 
 import numpy as np
 from functools import partial
-import random
 
 from maze_game.maze_logic.maze_generators import *
 
@@ -26,9 +25,9 @@ class Maze:
         y, x representing the number of nodes/cells that will be placed on uneven rows/cols (0-visited 1-not-visited).
         Even rows/cols will represent closed edges/walls as (1) and actual edges/opened edges as (0).
         The maze starts out as a grid filled with Ones and the passages will be carved out
-        args:
-        x: number of nodes on x axis
-        y: number of nodes on y axis
+        Args:
+            x (int): number of cells(vertices) on x axis
+            y (int): number of cells(vertices) on y axis
         """
         # len nodes x and y axis
         self.x = x
@@ -48,15 +47,20 @@ class Maze:
 
     @property
     def adj_lst(self):
-        """returns the maze represented as adjacent list for testing purposes this is made a @property instead of a
-        normal attribute """
+        """Generates a adjacent list from a maze in grid form
+        Returns:
+            maze represented as adjacent list
+         """
         return {
             (i, j):
                 [n for n in self.neighbors(i, j, radius=1)
                  if self.grid[n] == 0] for i in range(self.rows) for j in range(self.cols) if self.grid[i, j] == 0}
 
     def destroy_wall(self, current_cell, neighbor_cell):
-        """function to destroy a wall between 2 given cells"""
+        """function to destroy a wall between 2 given cells
+        Args:
+            current_cell(tuple): cell position (row, col)
+            neighbor_cell(tuple): neighboring cell position (row, col) """
         self.grid[(current_cell[0] + neighbor_cell[0]) // 2][(current_cell[1] + neighbor_cell[1]) // 2] = 0
 
     def neighbors(self, row_pos, col_pos, shuffle=True, radius=2):
@@ -64,11 +68,13 @@ class Maze:
         ex: cell 1, 1 only has 2 neighbors (if radius == 2)
         radius 2 to get neighbors from cell to cell (cells only on uneven cells)
         radius 1 to get all neighbors (used to get adj list of whole maze)
-        args:
+        Args:
             row_pos : row position of target cell to find neighbors
             col_pos : col position of target cell to find neigbbors
             shuffle : Boolean whether to shuffle the result
-            radius : How far to look for neighbors? (to look behind wall cells)"""
+            radius : How far to look for neighbors? (to look behind wall cells)
+        Returns:
+            list of neighbors"""
 
         n = [*[(row_pos + i, col_pos) for i in range(-radius, radius+1, radius*2) if 0 < row_pos + i < self.rows - 1],
              *[(row_pos, col_pos + i) for i in range(-radius, radius+1, radius*2) if 0 < col_pos + i < self.cols - 1]]

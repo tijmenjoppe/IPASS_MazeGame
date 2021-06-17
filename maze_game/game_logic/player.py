@@ -8,7 +8,8 @@ class Player(pygame.Rect):
         color (tuple): player(/square) color
     """
     def __init__(self, x, y, height, width, color):
-        """args:
+        """
+        Args:
             x (int): starting position on x axis
             y (int): starting position on y axis
             height (int): height of player
@@ -22,7 +23,9 @@ class Player(pygame.Rect):
     def move_player(self, game):
         """Function that checks boolean key values for the player's movement keys
         if a key is true the x/y position will change to the new position given there is no collision.
-        if there is a collision the player will be moved to the top/bottom/left/right of the colliding object"""
+        if there is a collision the player will be moved to the top/bottom/left/right of the colliding object
+        Args:
+            game(game object): game object for checking states"""
 
         if game.K_DOWN:
             self.y += self.vely
@@ -45,6 +48,6 @@ class Player(pygame.Rect):
 
     def draw(self, win):
         """draw player on the window
-        args:
+        Args:
             win: pygame display object"""
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height))
