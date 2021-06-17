@@ -1,10 +1,10 @@
 from maze_game.maze.maze import Maze
 from maze_game.maze.maze_solvers import depth_first_search
-from menu import Menu
+from maze_game.game.menu import Menu
+from maze_game.game.player import Player
 from pygame.locals import *
 import time
 from maze_game.maze.animate_helpers import *
-from player import Player
 
 
 class Game:
