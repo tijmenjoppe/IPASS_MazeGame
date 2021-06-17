@@ -1,4 +1,4 @@
-from maze_game.maze.animate_helpers import *
+from maze_game.animate_helpers import *
 
 class Menu():
     """ Menu class to create mainmenu for game

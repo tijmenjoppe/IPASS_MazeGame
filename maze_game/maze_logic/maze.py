@@ -4,7 +4,7 @@ import numpy as np
 from functools import partial
 import random
 
-from maze_game.maze.maze_generators import *
+from maze_game.maze_logic.maze_generators import *
 
 gen_funcs = {1: depth_first_search,
              2: prim, 3: partial(wilson, extra_walker=True), 4: wilson, 5: aldous_broder}

@@ -1,7 +1,7 @@
 """Module containing different algorithms to generate mazes"""
 
 import random
-from maze_game.maze.animate_helpers import *
+from maze_game.animate_helpers import *
 
 def random_walker(maze, current_cell, path=[]):
     """random walker used in Aldolous Broder and Wilson's algorithm if chosen to use a extra walker.

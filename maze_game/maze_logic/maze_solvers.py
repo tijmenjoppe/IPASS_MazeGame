@@ -1,6 +1,6 @@
 """Module containing different algorithms to solve mazes"""
 
-from maze_game.maze.animate_helpers import *
+from maze_game.animate_helpers import *
 
 def breadth_first_search(maze, start_pos, animate=False):
     """
