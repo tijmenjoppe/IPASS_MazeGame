@@ -1,5 +1,5 @@
 """Script to test and plot data about generation times of maze generation algorithms"""
-from maze_game.maze import Maze
+from maze_game.maze_logic.maze import Maze
 import time
 import matplotlib.pyplot as plt
 

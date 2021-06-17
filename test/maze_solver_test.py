@@ -1,6 +1,6 @@
 import unittest
-from maze_game.maze import Maze
-from maze_game.maze.maze_solvers import *
+from maze_game.maze_logic.maze import Maze
+from maze_game.maze_logic.maze_solvers import *
 import numpy as np
 
 

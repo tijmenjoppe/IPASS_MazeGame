@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from maze_game.maze import Maze
+from maze_game.maze_logic.maze import Maze
 
 
 # helper function for testing maze generators

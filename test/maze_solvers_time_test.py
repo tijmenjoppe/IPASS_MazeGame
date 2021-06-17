@@ -1,8 +1,8 @@
 """script to analyze the solving time of the different solving algorithms and plots the average solving time
     tests every solver algorithm with every generator algorithm (excluding generator algorithms not used in the game)"""
-from maze_game.maze import Maze
+from maze_game.maze_logic.maze import Maze
 import time
-from maze_game.maze.maze_solvers import depth_first_search, breadth_first_search
+from maze_game.maze_logic.maze_solvers import depth_first_search, breadth_first_search
 import matplotlib.pyplot as plt
 import numpy as np
 rounds = 1000

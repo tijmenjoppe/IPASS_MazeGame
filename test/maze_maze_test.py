@@ -1,5 +1,5 @@
 import unittest
-from maze_game.maze import Maze
+from maze_game.maze_logic.maze import Maze
 import random
 import numpy as np
 

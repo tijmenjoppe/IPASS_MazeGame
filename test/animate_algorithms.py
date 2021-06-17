@@ -1,7 +1,7 @@
 """Script to visualize implemented algorithms"""
 
-from maze_game.maze.maze import *
-from maze_game.maze.maze_solvers import depth_first_search, breadth_first_search
+from maze_game.maze_logic.maze import *
+from maze_game.maze_logic.maze_solvers import depth_first_search, breadth_first_search
 import time
 
 
