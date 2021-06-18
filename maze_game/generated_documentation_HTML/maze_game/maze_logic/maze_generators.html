@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>maze_game.maze_logic.maze_generators API documentation</title>
+<meta name="description" content="Module containing different algorithms to generate mazes" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>maze_game.maze_logic.maze_generators</code></h1>
+</header>
+<section id="section-intro">
+<p>Module containing different algorithms to generate mazes</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Module containing different algorithms to generate mazes&#34;&#34;&#34;
+
+import random
+from maze_game.animate_helpers import *
+
+def random_walker(maze, current_cell, path=[]):
+    &#34;&#34;&#34;random walker used in Aldolous Broder and Wilson&#39;s algorithm if chosen to use a extra walker.
+    randomly walks (once per function calL) along any cells of the maze. If the cell hasn&#39;t been visited yet the passages gets carved out.
+    An optional param path can be given which are positions in the maze that the random_walker can&#39;t walk on (Path from Wilson&#39;s)
+
+    Args:
+        maze:   maze object which will be used to store the generated maze.
+        current_cell: position in the maze where to start our random walk from
+        path: path to avoid in the random walk
+
+    Returns:
+        current_cell: if the next cell is in the path the current cell gets returned as next cell
+        next_cell: the next cell to take a rand
+        om step from
+    &#34;&#34;&#34;
+
+    next_cell = maze.neighbors(current_cell[0], current_cell[1], True)[0]
+    if next_cell in path:
+        return current_cell
+    if maze.grid[next_cell] == 1:
+        maze.destroy_wall(current_cell, next_cell)
+        maze.grid[next_cell] = 0
+
+    return next_cell
+
+
+def depth_first_search(maze, animate=False):
+    &#34;&#34;&#34;
+    Author:
+        Charles Pierre Trémaux (1876)
+
+    Time Complexity:
+        O(N) Vertices + Vertices,
+
+    Space Complexity:
+        O(N) Vertices
+
+    Maze generation algorithm:
+        (1, Difficulty: easy)
+
+    The algorithm:
+        Picks a random starting cell and carves out a passage to a random not visited neighbor cell, repeat this process from the neighbors perspective
+        if ran into a dead-end return to the most previously visited position that still has not visited neighbors
+        if no cells have not visited neighbors anymore the algorithm is finished
+
+    Iterative over recursive implementation to be more memory efficient and avoid stack overflow.
+    Args:
+        maze: maze object which will be used to store the generated maze.
+        animate: animate the generating process, 0 (=False) or FPS as integer value.
+    &#34;&#34;&#34;
+
+    def draw():
+        &#34;&#34;&#34;Custom draw function&#34;&#34;&#34;
+        draw_grid(win, maze.grid, tile_size)
+        for pos in stack:
+            pygame.draw.rect(win, RED, (pos[1] * tile_size, pos[0] * tile_size, tile_size, tile_size))
+        clock.tick(animate)
+        pygame.display.flip()
+
+    if animate:
+        clock, tile_size, win = animation_setup_grid(maze.grid)
+    # start at the start position and mark that cell as part of the maze / visited (0)
+    start = (random.randrange(1, maze.rows, 2), random.randrange(1, maze.rows, 2))
+
+    stack = [start]
+    maze.grid[start] = 0
+    # while the stack has elements in it (== not all cells have been visited)
+    while stack:
+        # current cell is most recent cell in the stack
+        current_cell = stack[-1]
+        # get all not visited neighbors from the current cell (if the value in the grid is 1 the cell is not visited)
+        neighbors = [n for n in maze.neighbors(current_cell[0], current_cell[1], shuffle=True) if maze.grid[n] == 1]
+        # if no not visited neighbors: pop from stack
+        if len(neighbors) == 0:
+            stack = stack[:-1]
+        # else make a random neighbor the next cell destroy the wall between the current and next cell,
+        # and mark it as part of the maze (0) and add to stack
+        else:
+            next_cell = neighbors[0]
+            maze.grid[next_cell] = 0
+            stack.append(next_cell)
+            # destroy wall between current cell and next cell
+            maze.destroy_wall(current_cell, next_cell)
+
+        if animate:
+            draw()
+
+
+def aldous_broder(maze, animate=False):
+    &#34;&#34;&#34;
+    Authors:
+        David Aldous, Andrei Broder
+
+    Time Complexity:
+        O(?) uses a random walker making the worst case infinite
+
+    Space Complexity:
+        O(N) Vertices.
+
+    Maze generation algorithm:
+        (5, Difficulty: hard (alternative))
+
+    The algorithm:
+        Picks a random starting cell mark it at visited and carve out a passage to a random neighbor cell, repeat this process from the neighbors perspective
+        if all cells have been visited the algorithm is finished.
+
+    Args:
+        maze: maze object which will be used to store the generated maze.
+        animate: animate the generating process, 0 (=False) or FPS as integer value.
+    &#34;&#34;&#34;
+
+    def draw():
+        &#34;&#34;&#34;Custom draw function&#34;&#34;&#34;
+        draw_grid(win, maze.grid, tile_size)
+        pygame.draw.rect(win, RED,
+                         (current_cell[1] * tile_size, current_cell[0] * tile_size, tile_size, tile_size))
+        pygame.display.flip()
+        clock.tick(animate)
+
+    if animate:
+        clock, tile_size, win = animation_setup_grid(maze.grid)
+
+    # start a a random position and mark that cell as part of the maze / visited (0)
+    current_cell = (random.randrange(1, maze.rows, 2), random.randrange(1, maze.rows, 2))
+    maze.grid[current_cell] = 0
+
+    visited = {current_cell: True}
+    # while the maze contains not visited cells
+    while len(visited) &lt; maze.x*maze.y:
+        # perform a random step (destroys walls and next cell if the step steps on a cell that hasn&#39;t been visited
+        current_cell = random_walker(maze, current_cell)
+        if visited.get(current_cell) is None:
+            visited[current_cell] = True
+        if animate:
+            draw()
+
+
+def prim(maze, animate=False):
+    &#34;&#34;&#34;
+    Authors:
+        Vojtěch Jarník (1930) independently rediscovered by Robert Prim (1957), Edsger Dijkstra (1959)
+
+    Time Complexity:
+        O(N) Vertices.
+
+    Space Complexity:
+        O(N) Vertices/2 + 1
+
+    Maze generation algorithm:
+        (2, Difficulty: Medium)
+
+    The algorithm:
+        Picks a random starting cell mark it at part of the maze and add all not visited neighbors to a frontier set.
+        pick a random cell from the frontier set and connect it to a cell that is already part of the maze.
+        mark the random cell as part of the maze and add all not visited neighbors to the frontier.
+        Repeat until frontier is empty and the algorithm is finished
+
+
+    Args:
+        maze: maze object which will be used to store the generated maze.
+        animate: animate the generating process, 0 (=False) or FPS as integer value.&#34;&#34;&#34;
+
+    def draw():
+        &#34;&#34;&#34;Custom draw function&#34;&#34;&#34;
+        draw_grid(win, maze.grid, tile_size)
+        for pos in frontier:
+            pygame.draw.rect(win, RED, (pos[1] * tile_size, pos[0] * tile_size, tile_size, tile_size))
+        pygame.display.flip()
+        clock.tick(animate)
+
+    if animate:
+        clock, tile_size, win = animation_setup_grid(maze.grid)
+    # set of all cells that are neighbors of cells that have been visited but not visited themself.
+    frontier = set()
+    start = (random.randrange(1, maze.rows, 2), random.randrange(1, maze.rows, 2))
+
+    # start at the start position and mark that cell as part of the maze / visited (0)
+    maze.grid[start] = 0
+    # add the neighbors of the starting cell to the frontier
+    for cell in maze.neighbors(start[0], start[1]):
+        frontier.add(cell)
+    # algorithm finishes when frontier is empty: all cells have been visited.
+    while frontier:
+        # choose a random next cell from the frontier
+        random_frontier_cell = random.sample(frontier, 1)[0]
+        # get a cell that is already in the maze and is also a neighbor of the frontier cell
+        connected_cell = [n for n in maze.neighbors(random_frontier_cell[0], random_frontier_cell[1]) if maze.grid[n] == 0]
+        # destroy wall between current cell and next cell and mark the random frontier cell as part of the maze (0)
+        maze.destroy_wall(connected_cell[0], random_frontier_cell)
+        maze.grid[random_frontier_cell] = 0
+        # get neighbor cells of the random frontier cell that aren&#39;t in the maze yet and add them to the frontier.
+        new_fronts = [n for n in maze.neighbors(random_frontier_cell[0], random_frontier_cell[1]) if maze.grid[n] == 1]
+        for front in new_fronts:
+            frontier.add(front)
+        frontier.remove(random_frontier_cell)
+
+        if animate:
+            draw()
+
+
+def wilson(maze, extra_walker=False, animate=False):
+    &#34;&#34;&#34;
+    Author:
+        David Bruce Wilson (1996)
+
+    Time Complexity O(?):
+        uses a random walker making the worst case infinite\
+    Space Complexity O(N):
+        Vertices.
+
+    Maze generation algorithm:
+        (4, Difficulty: Hard(alternative))
+
+    The algorithm:
+        Pick a random cell and marks it as part of the maze.
+        Pick another random cell and start a random walk from it.
+        if the random walk loops itself cut-off the loop and continue from there
+        when the random walker walks into a cell that&#39;s already part of the maze: mark the path from the random walker part of maze
+        repeat making random walkers until all cells have been visited.
+
+
+
+    Wilson&#39;s Algorithm &amp; Aldolous Broder hybrid
+    Maze generation algorithm:
+        (3, Difficulty: Hard)
+
+    The algorithm:
+        extended on Wilson. Instead of only picking a random cell and marking it as part of the maze:
+        start a Random Walk from there that does destroy walls on its path (Aldolous Broder)
+        this random walker avoids colliding into Wilson&#39;s path
+        has a same time and space complexity as Wilson/Aldolous Broder. Though almost always faster then those by themself
+
+    Author:
+        unknown/Sjoerd Beetsma
+
+
+
+    Args:
+        maze: maze object which will be used to store the generated maze.
+        extra_walker: use a extra random walker to generate the maze (aldolous broder algorithm)
+        animate: animate the generating process, 0 (=False) or FPS as integer value.&#34;&#34;&#34;
+
+    def draw():
+        &#34;&#34;&#34;Custom draw function&#34;&#34;&#34;
+        draw_grid(win, maze.grid, tile_size)
+        for pos in path:
+            pygame.draw.rect(win, RED, (pos[1] * tile_size, pos[0] * tile_size, tile_size, tile_size))
+        if extra_walker:
+            pygame.draw.rect(win, INDIGO,
+                             (extra_walker_pos[1] * tile_size, extra_walker_pos[0] * tile_size, tile_size, tile_size))
+        pygame.display.flip()
+
+    if animate: clock, tile_size, win = animation_setup_grid(maze.grid)
+    not_visited_cells = [(i, j) for i in range(1, maze.rows - 1, 2) for j in range(1, maze.cols - 1, 2)]
+    # pick a random start cell
+    start = random.sample(not_visited_cells, 1)[0]
+    # if extra_walker is activated the walk will start from this start position
+    if extra_walker:
+        extra_walker_pos = start
+    # remove the start position from not_visited_cells and mark it as part of the maze (0)
+    not_visited_cells.remove(start)
+    maze.grid[start] = 0
+
+    # while there are not visited cells left
+    while len(not_visited_cells) &gt; 0:
+        # start the path at a random location
+        path = [random.sample(not_visited_cells, 1)[0]]
+        # current cell is the first element in the path
+        next_cell = path[0]
+        # while next_cell is not part of the maze keep randomly walking (without changing the maze)
+        while next_cell in not_visited_cells:
+            next_cell = maze.neighbors(next_cell[0], next_cell[1], True)[0]
+            # if the next_cell is in the path a loop is created cut off the path at the point of the loop and continue from there
+            if next_cell in path:
+                path = path[:path.index(next_cell)]
+            path.append(next_cell)
+            # if extra walker is active make it go a next step
+            if extra_walker:
+                extra_walker_pos = random_walker(maze, extra_walker_pos, path)
+                # if extra walker hasn&#39;t been visited yet remove it from not visited cells
+                if extra_walker_pos in not_visited_cells:
+                    not_visited_cells.remove(extra_walker_pos)
+            if animate:
+                clock.tick(animate), draw()
+        # for loop is reached when the path reaches a cell that is part of the maze(0)
+        # the positions in the path and walls between them get destroyed.
+        for i, pos in enumerate(path[:-1]):
+            maze.grid[pos] = 0
+            maze.destroy_wall(pos, path[i + 1])
+            not_visited_cells.remove(pos)
+        if animate:
+            clock.tick(animate)
+            draw()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="maze_game.maze_logic.maze_generators.aldous_broder"><code class="name flex">
+<span>def <span class="ident">aldous_broder</span></span>(<span>maze, animate=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="authors">Authors</h2>
+<p>David Aldous, Andrei Broder</p>
+<p>Time Complexity:
+O(?) uses a random walker making the worst case infinite</p>
+<p>Space Complexity:
+O(N) Vertices.</p>
+<p>Maze generation algorithm:
+(5, Difficulty: hard (alternative))</p>
+<p>The algorithm:
+Picks a random starting cell mark it at visited and carve out a passage to a random neighbor cell, repeat this process from the neighbors perspective
+if all cells have been visited the algorithm is finished.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>maze</code></strong></dt>
+<dd>maze object which will be used to store the generated maze.</dd>
+<dt><strong><code>animate</code></strong></dt>
+<dd>animate the generating process, 0 (=False) or FPS as integer value.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def aldous_broder(maze, animate=False):
+    &#34;&#34;&#34;
+    Authors:
+        David Aldous, Andrei Broder
+
+    Time Complexity:
+        O(?) uses a random walker making the worst case infinite
+
+    Space Complexity:
+        O(N) Vertices.
+
+    Maze generation algorithm:
+        (5, Difficulty: hard (alternative))
+
+    The algorithm:
+        Picks a random starting cell mark it at visited and carve out a passage to a random neighbor cell, repeat this process from the neighbors perspective
+        if all cells have been visited the algorithm is finished.
+
+    Args:
+        maze: maze object which will be used to store the generated maze.
+        animate: animate the generating process, 0 (=False) or FPS as integer value.
+    &#34;&#34;&#34;
+
+    def draw():
+        &#34;&#34;&#34;Custom draw function&#34;&#34;&#34;
+        draw_grid(win, maze.grid, tile_size)
+        pygame.draw.rect(win, RED,
+                         (current_cell[1] * tile_size, current_cell[0] * tile_size, tile_size, tile_size))
+        pygame.display.flip()
+        clock.tick(animate)
+
+    if animate:
+        clock, tile_size, win = animation_setup_grid(maze.grid)
+
+    # start a a random position and mark that cell as part of the maze / visited (0)
+    current_cell = (random.randrange(1, maze.rows, 2), random.randrange(1, maze.rows, 2))
+    maze.grid[current_cell] = 0
+
+    visited = {current_cell: True}
+    # while the maze contains not visited cells
+    while len(visited) &lt; maze.x*maze.y:
+        # perform a random step (destroys walls and next cell if the step steps on a cell that hasn&#39;t been visited
+        current_cell = random_walker(maze, current_cell)
+        if visited.get(current_cell) is None:
+            visited[current_cell] = True
+        if animate:
+            draw()</code></pre>
+</details>
+</dd>
+<dt id="maze_game.maze_logic.maze_generators.depth_first_search"><code class="name flex">
+<span>def <span class="ident">depth_first_search</span></span>(<span>maze, animate=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="author">Author</h2>
+<p>Charles Pierre Trémaux (1876)</p>
+<p>Time Complexity:
+O(N) Vertices + Vertices,</p>
+<p>Space Complexity:
+O(N) Vertices</p>
+<p>Maze generation algorithm:
+(1, Difficulty: easy)</p>
+<p>The algorithm:
+Picks a random starting cell and carves out a passage to a random not visited neighbor cell, repeat this process from the neighbors perspective
+if ran into a dead-end return to the most previously visited position that still has not visited neighbors
+if no cells have not visited neighbors anymore the algorithm is finished</p>
+<p>Iterative over recursive implementation to be more memory efficient and avoid stack overflow.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>maze</code></strong></dt>
+<dd>maze object which will be used to store the generated maze.</dd>
+<dt><strong><code>animate</code></strong></dt>
+<dd>animate the generating process, 0 (=False) or FPS as integer value.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def depth_first_search(maze, animate=False):
+    &#34;&#34;&#34;
+    Author:
+        Charles Pierre Trémaux (1876)
+
+    Time Complexity:
+        O(N) Vertices + Vertices,
+
+    Space Complexity:
+        O(N) Vertices
+
+    Maze generation algorithm:
+        (1, Difficulty: easy)
+
+    The algorithm:
+        Picks a random starting cell and carves out a passage to a random not visited neighbor cell, repeat this process from the neighbors perspective
+        if ran into a dead-end return to the most previously visited position that still has not visited neighbors
+        if no cells have not visited neighbors anymore the algorithm is finished
+
+    Iterative over recursive implementation to be more memory efficient and avoid stack overflow.
+    Args:
+        maze: maze object which will be used to store the generated maze.
+        animate: animate the generating process, 0 (=False) or FPS as integer value.
+    &#34;&#34;&#34;
+
+    def draw():
+        &#34;&#34;&#34;Custom draw function&#34;&#34;&#34;
+        draw_grid(win, maze.grid, tile_size)
+        for pos in stack:
+            pygame.draw.rect(win, RED, (pos[1] * tile_size, pos[0] * tile_size, tile_size, tile_size))
+        clock.tick(animate)
+        pygame.display.flip()
+
+    if animate:
+        clock, tile_size, win = animation_setup_grid(maze.grid)
+    # start at the start position and mark that cell as part of the maze / visited (0)
+    start = (random.randrange(1, maze.rows, 2), random.randrange(1, maze.rows, 2))
+
+    stack = [start]
+    maze.grid[start] = 0
+    # while the stack has elements in it (== not all cells have been visited)
+    while stack:
+        # current cell is most recent cell in the stack
+        current_cell = stack[-1]
+        # get all not visited neighbors from the current cell (if the value in the grid is 1 the cell is not visited)
+        neighbors = [n for n in maze.neighbors(current_cell[0], current_cell[1], shuffle=True) if maze.grid[n] == 1]
+        # if no not visited neighbors: pop from stack
+        if len(neighbors) == 0:
+            stack = stack[:-1]
+        # else make a random neighbor the next cell destroy the wall between the current and next cell,
+        # and mark it as part of the maze (0) and add to stack
+        else:
+            next_cell = neighbors[0]
+            maze.grid[next_cell] = 0
+            stack.append(next_cell)
+            # destroy wall between current cell and next cell
+            maze.destroy_wall(current_cell, next_cell)
+
+        if animate:
+            draw()</code></pre>
+</details>
+</dd>
+<dt id="maze_game.maze_logic.maze_generators.prim"><code class="name flex">
+<span>def <span class="ident">prim</span></span>(<span>maze, animate=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="authors">Authors</h2>
+<p>Vojtěch Jarník (1930) independently rediscovered by Robert Prim (1957), Edsger Dijkstra (1959)</p>
+<p>Time Complexity:
+O(N) Vertices.</p>
+<p>Space Complexity:
+O(N) Vertices/2 + 1</p>
+<p>Maze generation algorithm:
+(2, Difficulty: Medium)</p>
+<p>The algorithm:
+Picks a random starting cell mark it at part of the maze and add all not visited neighbors to a frontier set.
+pick a random cell from the frontier set and connect it to a cell that is already part of the maze.
+mark the random cell as part of the maze and add all not visited neighbors to the frontier.
+Repeat until frontier is empty and the algorithm is finished</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>maze</code></strong></dt>
+<dd>maze object which will be used to store the generated maze.</dd>
+<dt><strong><code>animate</code></strong></dt>
+<dd>animate the generating process, 0 (=False) or FPS as integer value.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def prim(maze, animate=False):
+    &#34;&#34;&#34;
+    Authors:
+        Vojtěch Jarník (1930) independently rediscovered by Robert Prim (1957), Edsger Dijkstra (1959)
+
+    Time Complexity:
+        O(N) Vertices.
+
+    Space Complexity:
+        O(N) Vertices/2 + 1
+
+    Maze generation algorithm:
+        (2, Difficulty: Medium)
+
+    The algorithm:
+        Picks a random starting cell mark it at part of the maze and add all not visited neighbors to a frontier set.
+        pick a random cell from the frontier set and connect it to a cell that is already part of the maze.
+        mark the random cell as part of the maze and add all not visited neighbors to the frontier.
+        Repeat until frontier is empty and the algorithm is finished
+
+
+    Args:
+        maze: maze object which will be used to store the generated maze.
+        animate: animate the generating process, 0 (=False) or FPS as integer value.&#34;&#34;&#34;
+
+    def draw():
+        &#34;&#34;&#34;Custom draw function&#34;&#34;&#34;
+        draw_grid(win, maze.grid, tile_size)
+        for pos in frontier:
+            pygame.draw.rect(win, RED, (pos[1] * tile_size, pos[0] * tile_size, tile_size, tile_size))
+        pygame.display.flip()
+        clock.tick(animate)
+
+    if animate:
+        clock, tile_size, win = animation_setup_grid(maze.grid)
+    # set of all cells that are neighbors of cells that have been visited but not visited themself.
+    frontier = set()
+    start = (random.randrange(1, maze.rows, 2), random.randrange(1, maze.rows, 2))
+
+    # start at the start position and mark that cell as part of the maze / visited (0)
+    maze.grid[start] = 0
+    # add the neighbors of the starting cell to the frontier
+    for cell in maze.neighbors(start[0], start[1]):
+        frontier.add(cell)
+    # algorithm finishes when frontier is empty: all cells have been visited.
+    while frontier:
+        # choose a random next cell from the frontier
+        random_frontier_cell = random.sample(frontier, 1)[0]
+        # get a cell that is already in the maze and is also a neighbor of the frontier cell
+        connected_cell = [n for n in maze.neighbors(random_frontier_cell[0], random_frontier_cell[1]) if maze.grid[n] == 0]
+        # destroy wall between current cell and next cell and mark the random frontier cell as part of the maze (0)
+        maze.destroy_wall(connected_cell[0], random_frontier_cell)
+        maze.grid[random_frontier_cell] = 0
+        # get neighbor cells of the random frontier cell that aren&#39;t in the maze yet and add them to the frontier.
+        new_fronts = [n for n in maze.neighbors(random_frontier_cell[0], random_frontier_cell[1]) if maze.grid[n] == 1]
+        for front in new_fronts:
+            frontier.add(front)
+        frontier.remove(random_frontier_cell)
+
+        if animate:
+            draw()</code></pre>
+</details>
+</dd>
+<dt id="maze_game.maze_logic.maze_generators.random_walker"><code class="name flex">
+<span>def <span class="ident">random_walker</span></span>(<span>maze, current_cell, path=[])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>random walker used in Aldolous Broder and Wilson's algorithm if chosen to use a extra walker.
+randomly walks (once per function calL) along any cells of the maze. If the cell hasn't been visited yet the passages gets carved out.
+An optional param path can be given which are positions in the maze that the random_walker can't walk on (Path from Wilson's)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>maze</code></strong></dt>
+<dd>maze object which will be used to store the generated maze.</dd>
+<dt><strong><code>current_cell</code></strong></dt>
+<dd>position in the maze where to start our random walk from</dd>
+<dt><strong><code>path</code></strong></dt>
+<dd>path to avoid in the random walk</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>current_cell</code></dt>
+<dd>if the next cell is in the path the current cell gets returned as next cell</dd>
+<dt><code>next_cell</code></dt>
+<dd>the next cell to take a rand</dd>
+</dl>
+<p>om step from</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def random_walker(maze, current_cell, path=[]):
+    &#34;&#34;&#34;random walker used in Aldolous Broder and Wilson&#39;s algorithm if chosen to use a extra walker.
+    randomly walks (once per function calL) along any cells of the maze. If the cell hasn&#39;t been visited yet the passages gets carved out.
+    An optional param path can be given which are positions in the maze that the random_walker can&#39;t walk on (Path from Wilson&#39;s)
+
+    Args:
+        maze:   maze object which will be used to store the generated maze.
+        current_cell: position in the maze where to start our random walk from
+        path: path to avoid in the random walk
+
+    Returns:
+        current_cell: if the next cell is in the path the current cell gets returned as next cell
+        next_cell: the next cell to take a rand
+        om step from
+    &#34;&#34;&#34;
+
+    next_cell = maze.neighbors(current_cell[0], current_cell[1], True)[0]
+    if next_cell in path:
+        return current_cell
+    if maze.grid[next_cell] == 1:
+        maze.destroy_wall(current_cell, next_cell)
+        maze.grid[next_cell] = 0
+
+    return next_cell</code></pre>
+</details>
+</dd>
+<dt id="maze_game.maze_logic.maze_generators.wilson"><code class="name flex">
+<span>def <span class="ident">wilson</span></span>(<span>maze, extra_walker=False, animate=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="author">Author</h2>
+<p>David Bruce Wilson (1996)</p>
+<p>Time Complexity O(?):
+uses a random walker making the worst case infinite
+Space Complexity O(N):
+Vertices.</p>
+<p>Maze generation algorithm:
+(4, Difficulty: Hard(alternative))</p>
+<p>The algorithm:
+Pick a random cell and marks it as part of the maze.
+Pick another random cell and start a random walk from it.
+if the random walk loops itself cut-off the loop and continue from there
+when the random walker walks into a cell that's already part of the maze: mark the path from the random walker part of maze
+repeat making random walkers until all cells have been visited.</p>
+<p>Wilson's Algorithm &amp; Aldolous Broder hybrid
+Maze generation algorithm:
+(3, Difficulty: Hard)</p>
+<p>The algorithm:
+extended on Wilson. Instead of only picking a random cell and marking it as part of the maze:
+start a Random Walk from there that does destroy walls on its path (Aldolous Broder)
+this random walker avoids colliding into Wilson's path
+has a same time and space complexity as Wilson/Aldolous Broder. Though almost always faster then those by themself</p>
+<h2 id="author_1">Author</h2>
+<p>unknown/Sjoerd Beetsma</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>maze</code></strong></dt>
+<dd>maze object which will be used to store the generated maze.</dd>
+<dt><strong><code>extra_walker</code></strong></dt>
+<dd>use a extra random walker to generate the maze (aldolous broder algorithm)</dd>
+<dt><strong><code>animate</code></strong></dt>
+<dd>animate the generating process, 0 (=False) or FPS as integer value.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def wilson(maze, extra_walker=False, animate=False):
+    &#34;&#34;&#34;
+    Author:
+        David Bruce Wilson (1996)
+
+    Time Complexity O(?):
+        uses a random walker making the worst case infinite\
+    Space Complexity O(N):
+        Vertices.
+
+    Maze generation algorithm:
+        (4, Difficulty: Hard(alternative))
+
+    The algorithm:
+        Pick a random cell and marks it as part of the maze.
+        Pick another random cell and start a random walk from it.
+        if the random walk loops itself cut-off the loop and continue from there
+        when the random walker walks into a cell that&#39;s already part of the maze: mark the path from the random walker part of maze
+        repeat making random walkers until all cells have been visited.
+
+
+
+    Wilson&#39;s Algorithm &amp; Aldolous Broder hybrid
+    Maze generation algorithm:
+        (3, Difficulty: Hard)
+
+    The algorithm:
+        extended on Wilson. Instead of only picking a random cell and marking it as part of the maze:
+        start a Random Walk from there that does destroy walls on its path (Aldolous Broder)
+        this random walker avoids colliding into Wilson&#39;s path
+        has a same time and space complexity as Wilson/Aldolous Broder. Though almost always faster then those by themself
+
+    Author:
+        unknown/Sjoerd Beetsma
+
+
+
+    Args:
+        maze: maze object which will be used to store the generated maze.
+        extra_walker: use a extra random walker to generate the maze (aldolous broder algorithm)
+        animate: animate the generating process, 0 (=False) or FPS as integer value.&#34;&#34;&#34;
+
+    def draw():
+        &#34;&#34;&#34;Custom draw function&#34;&#34;&#34;
+        draw_grid(win, maze.grid, tile_size)
+        for pos in path:
+            pygame.draw.rect(win, RED, (pos[1] * tile_size, pos[0] * tile_size, tile_size, tile_size))
+        if extra_walker:
+            pygame.draw.rect(win, INDIGO,
+                             (extra_walker_pos[1] * tile_size, extra_walker_pos[0] * tile_size, tile_size, tile_size))
+        pygame.display.flip()
+
+    if animate: clock, tile_size, win = animation_setup_grid(maze.grid)
+    not_visited_cells = [(i, j) for i in range(1, maze.rows - 1, 2) for j in range(1, maze.cols - 1, 2)]
+    # pick a random start cell
+    start = random.sample(not_visited_cells, 1)[0]
+    # if extra_walker is activated the walk will start from this start position
+    if extra_walker:
+        extra_walker_pos = start
+    # remove the start position from not_visited_cells and mark it as part of the maze (0)
+    not_visited_cells.remove(start)
+    maze.grid[start] = 0
+
+    # while there are not visited cells left
+    while len(not_visited_cells) &gt; 0:
+        # start the path at a random location
+        path = [random.sample(not_visited_cells, 1)[0]]
+        # current cell is the first element in the path
+        next_cell = path[0]
+        # while next_cell is not part of the maze keep randomly walking (without changing the maze)
+        while next_cell in not_visited_cells:
+            next_cell = maze.neighbors(next_cell[0], next_cell[1], True)[0]
+            # if the next_cell is in the path a loop is created cut off the path at the point of the loop and continue from there
+            if next_cell in path:
+                path = path[:path.index(next_cell)]
+            path.append(next_cell)
+            # if extra walker is active make it go a next step
+            if extra_walker:
+                extra_walker_pos = random_walker(maze, extra_walker_pos, path)
+                # if extra walker hasn&#39;t been visited yet remove it from not visited cells
+                if extra_walker_pos in not_visited_cells:
+                    not_visited_cells.remove(extra_walker_pos)
+            if animate:
+                clock.tick(animate), draw()
+        # for loop is reached when the path reaches a cell that is part of the maze(0)
+        # the positions in the path and walls between them get destroyed.
+        for i, pos in enumerate(path[:-1]):
+            maze.grid[pos] = 0
+            maze.destroy_wall(pos, path[i + 1])
+            not_visited_cells.remove(pos)
+        if animate:
+            clock.tick(animate)
+            draw()</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="maze_game.maze_logic" href="index.html">maze_game.maze_logic</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="maze_game.maze_logic.maze_generators.aldous_broder" href="#maze_game.maze_logic.maze_generators.aldous_broder">aldous_broder</a></code></li>
+<li><code><a title="maze_game.maze_logic.maze_generators.depth_first_search" href="#maze_game.maze_logic.maze_generators.depth_first_search">depth_first_search</a></code></li>
+<li><code><a title="maze_game.maze_logic.maze_generators.prim" href="#maze_game.maze_logic.maze_generators.prim">prim</a></code></li>
+<li><code><a title="maze_game.maze_logic.maze_generators.random_walker" href="#maze_game.maze_logic.maze_generators.random_walker">random_walker</a></code></li>
+<li><code><a title="maze_game.maze_logic.maze_generators.wilson" href="#maze_game.maze_logic.maze_generators.wilson">wilson</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>

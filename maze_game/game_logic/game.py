@@ -1,10 +1,12 @@
 from maze_game.maze_logic.maze import Maze
 from maze_game.maze_logic.maze_solvers import depth_first_search
-from .menu import Menu
-from .player import Player
+from maze_game.game_logic.menu import Menu
+from maze_game.game_logic.player import Player
+
 from pygame.locals import *
 import time
 from maze_game.animate_helpers import *
+
 
 class Game:
     """Game object for playing a maze game
@@ -21,6 +23,7 @@ class Game:
             animate_fps (int): animation speed of solving and/or generating algorithms if 0 they won't be animated
             main_menu (Menu): Menu object serving as main menu
         """
+
     def __init__(self):
         pygame.init()
         # the game application is running
@@ -167,7 +170,6 @@ class Game:
                 self.draw_all()
                 self.clock.tick(self.fps)
                 pygame.display.flip()
-
 
     def draw_text(self, text, size, x, y, color=WHITE):
         """Method to draw text over the screen

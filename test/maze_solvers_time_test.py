@@ -4,9 +4,8 @@ from maze_game.maze_logic.maze import Maze
 import time
 from maze_game.maze_logic.maze_solvers import depth_first_search, breadth_first_search
 import matplotlib.pyplot as plt
-import numpy as np
 rounds = 1000
-# to display nicely in plot, and also only select the algos used in the game not all implemented ones.
+# for readability in plot (only test with implemented Generate algorithms IN the game)
 alg_names = {1:'Depth first search', 2:'Prim', 3:'Wilson & Aldolous Broder'}
 results = dict()
 bar_width = 0.4
@@ -30,7 +29,7 @@ for size in range(10,51,20):
         results_bfs[alg_names[gen_func]] = sum(bfs) / len(bfs)
         results_dfs[alg_names[gen_func]] = sum(dfs) / len(dfs)
 
-    bar_bfs = np.arange(len(results_bfs))
+    bar_bfs = [i for i in range(len(results_bfs))]
     bar_dfs = [i+bar_width for i in range(len(results_dfs))]
 
     plt.bar(bar_bfs, results_bfs.values(), bar_width, label='BFS')
