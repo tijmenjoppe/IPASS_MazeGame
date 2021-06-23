@@ -60,8 +60,8 @@ class Menu():
                 self.game.in_game = True
                 self.run_menu = False
             elif self.state == 'Exit':
-                self.run_menu = False
                 self.game.running = False
+                self.run_menu = False
         # if key is right or left
         # depending on the state height/width/difficulty/animation speed gets incremented up(right) or down(left)
         elif self.game.K_RIGHT:

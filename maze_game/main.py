@@ -6,8 +6,7 @@ def launch():
     """Function to launch the game"""
     game = Game()
     while game.running:
-        if game.in_game:
-            game.game_loop()
+        game.game_loop()
         game.main_menu.display_menu()
 
 

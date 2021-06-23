@@ -83,10 +83,12 @@ class Game:
         Initializes a new objects at the start of the function and enters the game_loop
          checking for Collisions between the finish and player, key(events) and redrawing the whole scene each frame"""
         # new maze, player, finish, wall objects in game loop to create a new instance every game
+
         maze = Maze(x=self.maze_w, y=self.maze_h, gen_func=self.maze_difficulty, animate=self.animate_fps)
         self.player = Player(maze.start[1] * self.tile_size, maze.start[0] * self.tile_size, self.tile_size,
                              self.tile_size, RED)
-        self.finish = Player(maze.end[1] * self.tile_size, maze.end[0] * self.tile_size, self.tile_size, self.tile_size,
+        self.finish = Player(maze.end[1] * self.tile_size, maze.end[0] * self.tile_size, self.tile_size,
+                             self.tile_size,
                              YELLOW)
         self.walls = []
         # setup screen resolution according to the maze size
