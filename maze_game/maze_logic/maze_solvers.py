@@ -65,12 +65,12 @@ def breadth_first_search(maze, start_pos, animate=False):
         if animate:
             draw()
 
-    # get shortest path from end to start by traversing the graph from the and and going to the cell with the shortest
+    # get shortest path from end to start by traversing the graph starting from the end and going to the cell with the shortest
     # distance from start
     current = maze.end
     path = [current]
-
-    while True:
+    # step through the maze i times from the end of the found path to the start
+    for i in range(dist_from_start[maze.end]):
         # which connection from the current point has the lowest distance? move to that direction and repeat
         # until the start of the maze is reached. (distance from start)
         # store connected cells from the current cell and their distances from start
@@ -80,8 +80,7 @@ def breadth_first_search(maze, start_pos, animate=False):
         next_cell = (min(connected_cells, key=connected_cells.get))
         current = next_cell
         path.append(next_cell)
-        if current == start_pos:
-            break
+
     # reverse the path so path becomes in order [start, ... , end]
     path.reverse()
     if animate:
