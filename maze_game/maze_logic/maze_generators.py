@@ -3,6 +3,7 @@
 import random
 from maze_game.animate_helpers import *
 
+
 def random_walker(maze, current_cell, path=[]):
     """random walker used in Aldolous Broder and Wilson's algorithm if chosen to use a extra walker.
     randomly walks (once per function calL) along any cells of the maze. If the cell hasn't been visited yet the passages gets carved out.
@@ -57,8 +58,8 @@ def depth_first_search(maze, animate=False):
     def draw():
         """Custom draw function"""
         draw_grid(win, maze.grid, tile_size)
-        for pos in stack:
-            pygame.draw.rect(win, RED, (pos[1] * tile_size, pos[0] * tile_size, tile_size, tile_size))
+        for position in stack:
+            pygame.draw.rect(win, RED, (position[1] * tile_size, position[0] * tile_size, tile_size, tile_size))
         clock.tick(animate)
         pygame.display.flip()
 
@@ -97,7 +98,7 @@ def aldous_broder(maze, animate=False):
         David Aldous, Andrei Broder
 
     Time Complexity:
-        O(?) uses a random walker making the worst case infinite
+        O(∞) uses a random walker making the worst case infinite
 
     Space Complexity:
         O(N) Vertices.
@@ -131,7 +132,7 @@ def aldous_broder(maze, animate=False):
 
     visited = {current_cell: True}
     # while the maze contains not visited cells
-    while len(visited) < maze.x*maze.y:
+    while len(visited) < maze.x * maze.y:
         # perform a random step (destroys walls and next cell if the step steps on a cell that hasn't been visited
         current_cell = random_walker(maze, current_cell)
         if visited.get(current_cell) is None:
@@ -168,8 +169,8 @@ def prim(maze, animate=False):
     def draw():
         """Custom draw function"""
         draw_grid(win, maze.grid, tile_size)
-        for pos in frontier:
-            pygame.draw.rect(win, RED, (pos[1] * tile_size, pos[0] * tile_size, tile_size, tile_size))
+        for position in frontier:
+            pygame.draw.rect(win, RED, (position[1] * tile_size, position[0] * tile_size, tile_size, tile_size))
         pygame.display.flip()
         clock.tick(animate)
 
@@ -189,7 +190,8 @@ def prim(maze, animate=False):
         # choose a random next cell from the frontier
         random_frontier_cell = random.sample(frontier, 1)[0]
         # get a cell that is already in the maze and is also a neighbor of the frontier cell
-        connected_cell = [n for n in maze.neighbors(random_frontier_cell[0], random_frontier_cell[1]) if maze.grid[n] == 0]
+        connected_cell = [n for n in maze.neighbors(random_frontier_cell[0], random_frontier_cell[1]) if
+                          maze.grid[n] == 0]
         # destroy wall between current cell and next cell and mark the random frontier cell as part of the maze (0)
         maze.destroy_wall(connected_cell[0], random_frontier_cell)
         maze.grid[random_frontier_cell] = 0
@@ -208,7 +210,7 @@ def wilson(maze, extra_walker=False, animate=False):
     Author:
         David Bruce Wilson (1996)
 
-    Time Complexity O(?):
+    Time Complexity O(∞):
         uses a random walker making the worst case infinite\
     Space Complexity O(N):
         Vertices.
@@ -224,7 +226,6 @@ def wilson(maze, extra_walker=False, animate=False):
         repeat making random walkers until all cells have been visited.
 
 
-
     Wilson's Algorithm & Aldolous Broder hybrid
     Maze generation algorithm:
         (3, Difficulty: Hard)
@@ -238,8 +239,6 @@ def wilson(maze, extra_walker=False, animate=False):
     Author:
         unknown/Sjoerd Beetsma
 
-
-
     Args:
         maze: maze object which will be used to store the generated maze.
         extra_walker: use a extra random walker to generate the maze (aldolous broder algorithm)
@@ -248,8 +247,8 @@ def wilson(maze, extra_walker=False, animate=False):
     def draw():
         """Custom draw function"""
         draw_grid(win, maze.grid, tile_size)
-        for pos in path:
-            pygame.draw.rect(win, RED, (pos[1] * tile_size, pos[0] * tile_size, tile_size, tile_size))
+        for position in path:
+            pygame.draw.rect(win, RED, (position[1] * tile_size, position[0] * tile_size, tile_size, tile_size))
         if extra_walker:
             pygame.draw.rect(win, INDIGO,
                              (extra_walker_pos[1] * tile_size, extra_walker_pos[0] * tile_size, tile_size, tile_size))
@@ -296,4 +295,3 @@ def wilson(maze, extra_walker=False, animate=False):
         if animate:
             clock.tick(animate)
             draw()
-
