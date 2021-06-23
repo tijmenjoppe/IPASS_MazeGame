@@ -5,8 +5,10 @@ from functools import partial
 
 from maze_game.maze_logic.maze_generators import *
 
+# Easy: Depth First Search. Medium: Prim. Hard: Wilson & Aldous Broder hybrid (extension on Wilson)
 gen_funcs = {1: depth_first_search,
              2: prim, 3: partial(wilson, extra_walker=True), 4: wilson, 5: aldous_broder}
+
 
 class Maze:
     """ Maze object which stores a perfect maze in form of a grid & adjacent list
@@ -19,6 +21,7 @@ class Maze:
         start (tuple): position in the grid which is the starting position of the maze. always left upper corner
         end (tuple): position in the grid which is the end/finish position of the maze. always right lower corner
     """
+
     def __init__(self, x, y, gen_func=None, animate=False):
         """
         creates empty maze of size (y*2 + 1) * (x*2 +1)
@@ -28,6 +31,9 @@ class Maze:
         Args:
             x (int): number of cells(vertices) on x axis
             y (int): number of cells(vertices) on y axis
+            gen_func: which generation algorithm to use
+        animate: animate the generating process, 0 (=False) or FPS as integer value.
+
         """
         # len nodes x and y axis
         self.x = x
@@ -43,7 +49,6 @@ class Maze:
         # carve out a maze with a given generation algorithm/function
         if gen_func:
             gen_funcs[gen_func](self, animate=animate)
-
 
     @property
     def adj_lst(self):
@@ -67,19 +72,19 @@ class Maze:
         """ function to get the neighbors of a certain position in the grid.
         ex: cell 1, 1 only has 2 neighbors (if radius == 2)
         radius 2 to get neighbors from cell to cell (cells only on uneven cells)
-        radius 1 to get all neighbors (used to get adj list of whole maze)
+        radius 1 to get all neighbors (used to create adj list representation of maze)
         Args:
             row_pos : row position of target cell to find neighbors
             col_pos : col position of target cell to find neigbbors
             shuffle : Boolean whether to shuffle the result
-            radius : How far to look for neighbors? (to look behind wall cells)
+            radius : At what radius to look for neighbors?
         Returns:
             list of neighbors"""
-
-        n = [*[(row_pos + i, col_pos) for i in range(-radius, radius+1, radius*2) if 0 < row_pos + i < self.rows - 1],
-             *[(row_pos, col_pos + i) for i in range(-radius, radius+1, radius*2) if 0 < col_pos + i < self.cols - 1]]
+        # get neighbors in radius on x axis and y axis add these 2 together to get all neighbors
+        neighbors_lst = [*[(row_pos + i, col_pos) for i in range(-radius, radius + 1, radius * 2) if
+               0 < row_pos + i < self.rows - 1],
+             *[(row_pos, col_pos + i) for i in range(-radius, radius + 1, radius * 2) if
+               0 < col_pos + i < self.cols - 1]]
         if shuffle:
-            random.shuffle(n)
-        return n
-
-
+            random.shuffle(neighbors_lst)
+        return neighbors_lst

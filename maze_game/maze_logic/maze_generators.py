@@ -16,17 +16,17 @@ def random_walker(maze, current_cell, path=[]):
 
     Returns:
         current_cell: if the next cell is in the path the current cell gets returned as next cell
-        next_cell: the next cell to take a rand
-        om step from
+        next_cell: the next cell to take a random step from
     """
-
+    # next cell is a random neighbor
     next_cell = maze.neighbors(current_cell[0], current_cell[1], True)[0]
+    # avoid stepping into Wilson's path
     if next_cell in path:
         return current_cell
+    # if cell is open the walker opens up the next cell and destroys the wall between current and next
     if maze.grid[next_cell] == 1:
         maze.destroy_wall(current_cell, next_cell)
         maze.grid[next_cell] = 0
-
     return next_cell
 
 
@@ -161,7 +161,6 @@ def prim(maze, animate=False):
         mark the random cell as part of the maze and add all not visited neighbors to the frontier.
         Repeat until frontier is empty and the algorithm is finished
 
-
     Args:
         maze: maze object which will be used to store the generated maze.
         animate: animate the generating process, 0 (=False) or FPS as integer value."""
@@ -203,7 +202,6 @@ def prim(maze, animate=False):
 
         if animate:
             draw()
-
 
 def wilson(maze, extra_walker=False, animate=False):
     """
@@ -274,7 +272,8 @@ def wilson(maze, extra_walker=False, animate=False):
         # while next_cell is not part of the maze keep randomly walking (without changing the maze)
         while next_cell in not_visited_cells:
             next_cell = maze.neighbors(next_cell[0], next_cell[1], True)[0]
-            # if the next_cell is in the path a loop is created cut off the path at the point of the loop and continue from there
+            # if the next_cell is in the path a loop is created cut off the path at the point of the loop and
+            # continue from there
             if next_cell in path:
                 path = path[:path.index(next_cell)]
             path.append(next_cell)
