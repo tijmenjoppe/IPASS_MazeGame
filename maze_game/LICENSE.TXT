@@ -1,6 +1,6 @@
 name: Maze Game
 version: 1.0
-description: Maze game with solvers & generators playable in Pygame
+description: Maze Game with solvers & generators made playable with Pygame
 author: Sjoerd Beetsma
 author_email: S.Beetsma@student.hu.nl
 packages|modules|files: maze_game.*
