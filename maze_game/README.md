@@ -4,7 +4,7 @@ How to launch:
 
 1\. Make sure all packages from requirements are installed. (pip install I_PASS/requirements.txt)
 
-2\. Run maze_game/start_game.py
+2\. Run maze_game/main.py
 
 References:
 
@@ -22,10 +22,9 @@ Maze solvers:
 
 I_PASS  
 ├───maze_game  
-│   │   animate_helpers.py   -> animation helper functions/color constants  
-│   │   start_game.py        -> main file from within the package to start the game  
+│   │   animate_helpers.py   -> animation helper functions/color constants   
 │   │   LICENSE.TXT       -> containing license information (MIT)  
-│   │   main.py               -> main file to launch from terminal (had to be made seperately from start_game.py to work from terminal)  
+│   │   main.py               -> main file from within the package to start the game  
 │   │   README.md  
 │   │   requirements.txt     -> required packages  
 │   │   spel_instructies.txt -> instructions on how to play the game itself  
