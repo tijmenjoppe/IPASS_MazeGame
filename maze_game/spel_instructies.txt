@@ -1,7 +1,7 @@
-Start het spel via terminal met main.py of start_game.py
-of start het spel via een IDE met start_game.py
+Start het spel door main.py te runnen.
 
-na het opstarten zie je het hoofdmenu met de pijltjes toetsen kan je door het hoofdmenu navigeren en waardes zoals:
+Na het opstarten van main.py zie je het hoofdmenu van het spel.
+Met de pijltjes toetsen kan je door het hoofdmenu navigeren en waardes zoals:
 lengte, breedte, en moeilijkheid aanpassen
 
 Om het spel te starten navigeer naar 'Start' en druk op de enter toets.
@@ -12,6 +12,6 @@ Je rode vierkantje kan je bewegen met de pijltjes toetsen.
 Wanneer je het doolhof wilt laten oplossen door de computer druk op de ENTER toets.
 
 Na het bereiken van de finish ga je terug naar het hoofdmenu.
-Om tijdens het spel terug te keren naar het hoofdmenu druk op de ESC toets
+Om tijdens het spel terug te keren naar het hoofdmenu druk op de ESC toets.
 
 
