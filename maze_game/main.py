@@ -1,5 +1,5 @@
 """Main script to start the game"""
-from game_logic.game import Game
+from maze_game.game_logic.game import Game
 
 
 def launch():
