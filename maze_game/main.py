@@ -1,4 +1,4 @@
-"""Script to launch the game"""
+"""Main script to start the game"""
 from game_logic.game import Game
 
 
