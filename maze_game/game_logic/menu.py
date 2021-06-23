@@ -90,7 +90,7 @@ class Menu():
         # difficulties stored as int to make more readable for user make labels:
         difficulty_labels = {1: 'Easy', 2: 'Medium', 3: 'Hard'}
         # one line function to return No if fps == 0 else string 'fps: someInt'
-        animate_label = lambda fps: 'Nee' if fps == 0 else f'fps: {fps}'
+        animate_label = lambda fps: ': Nee' if fps == 0 else f'fps: {fps}'
 
         while self.run_menu:
             # get inputs from event loop
@@ -104,7 +104,7 @@ class Menu():
                                 self.difficulty_x, self.difficulty_y, BLACK)
             self.game.draw_text(f'< Hoogte {self.game.maze_h} >', 20, self.height_x, self.height_y, BLACK)
             self.game.draw_text(f'< Breedte {self.game.maze_w} >', 20, self.width_x, self.width_y, BLACK)
-            self.game.draw_text(f'< visualiseer Algoritmes {animate_label(self.game.animate_fps)}>', 20, self.animate_x,
+            self.game.draw_text(f'< visualiseer Algoritmes{animate_label(self.game.animate_fps)}>', 20, self.animate_x,
                                 self.animate_y, BLACK)
             self.game.draw_text('Afsluiten', 20, self.exit_x, self.exit_y, RED)
             self.draw_pointer()
