@@ -182,22 +182,30 @@ class Game:
                 y: y position on pygame display
                 color: text color"""
 
+        # set font and size
         font = pygame.font.Font(self.font, size)
+        # create surface/canvas with text
         text_surface = font.render(text, True, color)
 
         text_rect = text_surface.get_rect()
+        # center text in middle of rect
         text_rect.center = (x, y)
+        # white box behind text
+        pygame.draw.rect(self.display, WHITE, text_rect)
         self.display.blit(text_surface, text_rect)
 
     def add_walls(self, maze):
         """Function to add walls from a maze object to the game as a Rectangle object (to handle collisions easily)
         Args:
             maze: Maze object containing a perfect maze"""
+        # iterate through the maze
         for i in range(maze.rows):
             for j in range(maze.cols):
-                y = i * self.tile_size
-                x = j * self.tile_size
+                # if current position at (i, j) is a wall, add wall to game's wall list with corrected position
+                # according to tile size
                 if maze.grid[i][j] == 1:
+                    y = i * self.tile_size
+                    x = j * self.tile_size
                     self.walls.append(pygame.Rect(x, y, self.tile_size, self.tile_size))
 
     def draw_walls(self):
