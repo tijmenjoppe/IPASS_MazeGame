@@ -38,11 +38,11 @@ class Game:
         # default font
         self.font = pygame.font.get_default_font()
         # standard maze settings/values to display
-        self.maze_w = 10
-        self.maze_h = 10
+        self.maze_w = 40
+        self.maze_h = 30
         self.maze_difficulty = 1
         self.tile_size = 15
-        self.animate_fps = 0
+        self.animate_fps = 200
         self.main_menu = Menu(self)
 
     def event_loop(self):
